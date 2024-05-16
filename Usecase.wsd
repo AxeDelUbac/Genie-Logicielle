@@ -1,0 +1,22 @@
+@startuml
+actor Client
+actor Caissier
+actor SystemeDeGestionDesStocks
+actor ResponsableMagasin
+
+rectangle "Caisse Enregistreuse" {
+  usecase "Payer" as UC1
+  usecase "Connaitre le prix" as UC2
+  usecase "Retourner un livre" as UC3
+  usecase "Initialiser la caisse" as UC4
+  usecase "Informer de la variation du stock" as UC5
+  usecase "Enregistrer les articles" as UC6
+}
+
+Client --> UC1
+Client --> UC2
+Client --> UC3
+Caissier --> UC6
+ResponsableMagasin --> UC4
+SystemeDeGestionDesStocks->UC5
+@enduml
