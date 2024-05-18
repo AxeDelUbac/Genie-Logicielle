@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<project name="Calculatrice-V3" basedir="." default="run">
+
+	<property name="srcdir"     value="src"/>
+	<property name="classesdir" value="build/classes"/>
+	<property name="jardir"     value="build/jar"/>
+	<property name="jarfile"    value="${jardir}/${ant.project.name}.jar"/>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${classesdir}"/>
+		<javac srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false"/>
+	</target>
+
+	<target name="package" depends="compile">
+		<mkdir dir="${jardir}"/>
+		<jar destfile="${jarfile}" basedir="${classesdir}">
+			<manifest>
+				<attribute name="Main-Class" value="fr.esisar.calculatrice.Calculateur"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="package">
+		<java jar="${jarfile}" fork="true"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${classesdir}"/>
+		<delete file="${jarfile}"/>
+	</target>
+
+</project>
